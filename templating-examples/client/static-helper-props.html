@@ -1,0 +1,32 @@
+
+<template name="staticHelperProps">
+    <fieldset>
+        <legend>Static Helper Properties</legend>
+
+        <ul>
+            <li>
+                <h3>Returning simple value</h3>
+                <code>
+                    &#123;&#123; simpleParam }}
+                </code>
+                <p>What we'd expect; pretty simple.</p>
+                <pre>
+{{ simpleParam }}
+                </pre>
+            </li>
+
+            <li>
+                <h3>Returning an object</h3>
+                <code>
+                    &#123;&#123; objectParam.foo }}<br/>
+                    &#123;&#123; objectParam.bar }}
+                </code>
+                <p>Access to function's value with dot-notation</p>
+                <pre>
+{{ objectParam.foo }}
+{{ objectParam.bar }}
+                </pre>
+            </li>
+        </ul>
+    </fieldset>
+</template>

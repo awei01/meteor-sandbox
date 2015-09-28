@@ -1,0 +1,96 @@
+<template name="methodHelperProps">
+	<fieldset>
+		<legend>Method Helper Properties</legend>
+		<ul>
+			<li>
+				<h3>No Params</h3>
+				<code>
+					&#123;&#123; receivingParams }}
+				</code>
+				<p>
+					When not passing parameters, there are no params (not even Spacebars.kw object).
+				</p>
+				<pre>
+{{ receivingParams }}
+				</pre>
+			</li>
+
+			<li>
+				<h3>Passing Params</h3>
+				<code>
+					&#123;&#123; receivingParams "foo" "bar" "baz" }}
+				</code>
+				<p>
+					But, when you do pass params, it attatches a Spacebars.kw object at the end.
+				</p>
+				<pre>
+{{ receivingParams "foo" "bar" "baz" }}
+				</pre>
+			</li>
+
+			<li>
+				<h3>Unexpected Params</h3>
+				<code>
+					&#123;&#123; expectsTwoParams "foo from html" }}
+				</code>
+				<p>
+					Even when your helper method expects more than one param, the last one will be the Spacebars.kw object.
+				</p>
+				<pre>
+{{ expectsTwoParams "foo from html" }}
+				</pre>
+			</li>
+
+			<li>
+				<h3>Key/Value Pairs</h3>
+				<code>
+					&#123;&#123; useSpacebarsKw foo="hi there" bar=12 boo=4.01 baz=false }}
+				</code>
+				<p>
+					You can invoke a helper method with assigned parameters. They'll show up on the Spacebars.kw object .hash property. You can assign strings, numbers or booleans.
+				</p>
+				<pre>
+{{ useSpacebarsKw foo="hi there" bar=12 boo=4.01 baz=false }}
+				</pre>
+			</li>
+
+			<li>
+				<h3>Params And Key/Value Pairs</h3>
+				<code>
+					&#123;&#123; useSpacebarsKw "first param" foo="hi there" bar=(receivingParams "bar") }}
+				</code>
+				<p>
+					You can pass paramters and key/value pairs. Your key/value pair can also be a function that receives args.
+				</p>
+				<pre>
+{{ useSpacebarsKw "first param" foo="hi there" bar=(receivingParams "bar") }}
+				</pre>
+
+				<p>This will break since you need parenthesis to help spacebars parse the statement</p>
+				<code>
+					&#123;&#123; useSpacebarsKw "first param" foo="hi there" bar=receivingParams "bar" }}
+				</code>
+			</li>
+
+			<li>
+				<h3>Changing Context</h3>
+				<code>
+					&#123;&#123; #with makeContext "param1" "param2" foo="foo value" bar="bar value" }}<br/>
+					&lt;pre><br/>
+					&#123;&#123; useContext "param3" "param4" baz="baz value" }}<br/>
+					&lt;/pre><br/>
+					&lt; /with }}
+				</code>
+				<p>
+					We can use the #with (or #each) declaration to change the context of `this` within the helper (look in your console log).
+				</p>
+				{{ #with makeContext "param1" "param2" foo="foo value" bar="bar value" }}
+				<pre>
+{{ useContext "param3" "param4" baz="baz value" }}
+				</pre>
+				{{ /with }}
+			</li>
+		</ul>
+	</fieldset>
+</template>
+

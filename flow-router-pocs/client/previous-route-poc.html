@@ -1,0 +1,21 @@
+<template name="previousRoutePoc">
+    <fieldset>
+        <legend>Capture FlowRouter's previous route</legend>
+        <p>
+            Capture the current route on entering any route. Capture the previous route on exiting any route.
+        </p>
+        <ul>
+            <li><a href="/first">first</a></li>
+            <li><a href="/second">second</a></li>
+            <li><a href="/third">third</a></li>
+            <li><a href="?foo=1">query 1</a></li>
+            <li><a href="?foo=2">query 2</a></li>
+        </ul>
+
+        <pre>
+previous: {{ getPreviousPath }}
+current: {{ getCurrentPath }}
+        </pre>
+
+    </fieldset>
+</template>

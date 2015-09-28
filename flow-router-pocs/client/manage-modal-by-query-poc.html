@@ -1,0 +1,64 @@
+
+<template name="manageModalByQueryPoc">
+
+	<h3>Manage a Modal By Query PoC</h3>
+
+	<p>See if we can manage the modal's state via a query param</p>
+
+	<ul>
+		<li><a href="?foo=bar&baz=boo">set some query params</a></li>
+		<li><a href="{{ makeModalPath "modal1" }}">open modal 1</a></li>
+		<li><a href="{{ makeModalPath "modal2" }}">open modal 2</a></li>
+	</ul>
+
+	{{ #if getModal }}
+
+	<div style="background: #ccc; border: 1px solid #000; padding: 1em; ">
+		<h3>Some Modal</h3>
+		{{ >Template.dynamic template=getModal }}
+	</div>
+
+	{{ /if }}
+
+	<code>
+	&#123;&#123; #if getModal }}<br/>
+		&lt;div style="background: #ccc; border: 1px solid #000; padding: 1em; "><br/>
+			&lt;h3>Some Modal&lt;/h3><br/>
+			&#123;&#123; >Template.dynamic template=getModal }}<br/>
+		&lt;/div><br/>
+	&#123;&#123; /if }}
+	</code>
+
+</template>
+
+<!--
+This won't work:
+
+	{{ #if getModal }}
+
+		{{ #modal }}
+			{{ >Template.dyanamic template=getModal }}
+		{{ /modal }}
+
+	{{ /if }}
+
+</template>
+
+<template name="modal">
+	<div style="background: #ccc; border: 1px solid #000; padding: 1em; ">
+		<h3>Some Modal</h3>
+		{{ >Template.contentBlock }}
+	</div>
+</template>
+
+-->
+
+
+
+<template name="modal1">
+	This is modal 1
+</template>
+
+<template name="modal2">
+	This is modal 2
+</template>
