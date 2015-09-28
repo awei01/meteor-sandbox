@@ -1,0 +1,89 @@
+<head>
+	<title>template-examples (Meteor v1.0.2)</title>
+</head>
+
+<body>
+
+	{{ > simpleParam }}
+
+	<hr/>
+
+	{{ > usingMethods }}
+
+</body>
+
+<template name="simpleParam">
+	<fieldset>
+		<legend>Simple Param</legend>
+		<fieldset>
+			<legend>Defining directly on template</legend>
+			<p>This is deprecated.</p>
+			<pre>{{ classParam }}</pre>
+		</fieldset>
+		<fieldset>
+			<legend>Using in helpers block</legend>
+			<p>What we'd expect; pretty simple.</p>
+			<pre>{{ helperParam }}</pre>
+		</fieldset>
+	</fieldset>
+</template>
+
+<template name="usingMethods">
+	<fieldset>
+		<legend>Using Methods</legend>
+		<fieldset>
+			<legend>No Params</legend>
+			<p>
+				When not passing parameters, there are no params (not even Spacebars.kw object).
+			</p>
+			<pre>{{ receivingParams }}</pre>
+		</fieldset>
+
+		<fieldset>
+			<legend>Passing Params</legend>
+			<p>
+				But, when you do pass params, it attatches a Spacebars.kw object at the end.
+			</p>
+			<pre>{{ receivingParams "foo" "bar" "baz" }}</pre>
+		</fieldset>
+
+		<fieldset>
+			<legend>Unexpected Params</legend>
+			<p>
+				Even when your helper method expects more than one param, the last one will be the Spacebars.kw object.
+			</p>
+			<pre>{{ expectsTwoParams "foo from html" }}</pre>
+		</fieldset>
+
+		<fieldset>
+			<legend>Key/Value Pairs</legend>
+			<p>
+				You can invoke a helper method with assigned parameters. They'll show up on the Spacebars.kw object .hash property. You can assign strings, numbers or booleans.
+			</p>
+			<pre>{{ useSpacebarsKw foo="hi there" bar=12 boo=4.01 baz=false }}</pre>
+		</fieldset>
+
+		<fieldset>
+			<legend>Params And Key/Value Pairs</legend>
+			<p>
+				You can pass paramters and key/value pairs. Your key/value pair can also be a function that receives args.
+			</p>
+			<code>
+				This will break since you need parenthesis to help spacebars parse your key/value pairs.<br/>
+				useSpacebarsKw "first param" foo="hi there" bar=receivingParams "bar"
+			</code>
+			<pre>{{ useSpacebarsKw "first param" foo="hi there" bar=(receivingParams "bar") }}</pre>
+		</fieldset>
+
+		<fieldset>
+			<legend>Changing Context</legend>
+			<p>
+				We can use the #with (or #each) declaration to change the context of `this` within the helper (look in your console log).
+			</p>
+			{{ #with makeContext "param1" "param2" foo="foo value" bar="bar value" }}
+			<pre>{{ useContext "param3" "param4" baz="baz value" }}</pre>
+			{{ /with }}
+		</fieldset>
+	</fieldset>
+</template>
+
